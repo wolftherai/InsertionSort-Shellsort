@@ -3,6 +3,10 @@
 
 using namespace std;
 
+/*
+Array is divided into two parts - one is sorted (while loop), another unsorted (for loop).
+We took elements from begining one by one and put them into their position.
+*/
 void InsertionSort(int length, int *&A)
 {
   int j;
@@ -15,9 +19,23 @@ void InsertionSort(int length, int *&A)
     }
   }
 }
+/*
+In ShellSort we are working with array's length.
+Starting length is half array's size. After we finish work in this distance,
+we divide by 2 again.
+Repeat until length == 1 & weren't any swaps left
+*/
 void ShellSort(int length, int *&A)
 {
-
+  int j;
+  for (int gap = length / 2; gap > 0; gap /= 2) // repeating until gap is not less than 1
+  {
+    for (int i = gap; i < length; i++)
+    {
+      for (j = i; j >= gap && A[j - gap] > A[j]; j -= gap)
+        swap(A[j], A[j - gap]);
+    }
+  }
 }
 void ReadArray(int &size, int *&A)
 {
