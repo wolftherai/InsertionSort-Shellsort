@@ -1,12 +1,12 @@
+#include<fstream>
+#include <stdio.h>      /* printf, scanf, puts, NULL */
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>   
+#include <algorithm>
+#include <chrono> 
 #include <iostream>
-#include <algorithm> // for swap function
-
 using namespace std;
-
-/*
-Array is divided into two parts - one is sorted (while loop), another unsorted (for loop).
-We took elements from begining one by one and put them into their position.
-*/
+using namespace std::chrono; 
 void InsertionSort(int length, int *&A)
 {
   int j;
@@ -42,39 +42,118 @@ void ReadArray(int &size, int *&A)
   cout << "### Insertion Sort & ShellSort ###\nInput size of an array: ";
   cin >> size;
   A = new int[size];
-  cout << "Input elements of an array: ";
+  cout << "Insert elements of an array: ";
 
   for (int i = 0; i < size; i++)
     cin >> A[i]; // Values are saved to array
 }
 void PrintArray(int length, int *&A)
 {
-	cout << "\nSorted Array:\n";
+	cout << "\nArray:\n";
 	for (int i = 0; i < length; i++)
     	cout << A[i] << " ";
 }
-int main() {
-  int n = 0, choice = 0; // n - array size, choice is for choosing Insertion Sort or ShellSort algortihms
-  int * numbers = new int[n]; // Dynamic array size changed in ReadArray() function
-
-  ReadArray(n, numbers);
-  cout << "#1. Insertion Sort\n#2. ShellSort\n";
-  while(choice != 1 || choice != 2)
+//-------------------------------------------------------------------------------------
+void insert_test_data(int size,int *&numbers){
+    int number;
+  ofstream fr("test_data.txt");
+/* initialize random seed: */
+  srand (time(NULL));
+  numbers = new int[size];
+  /* generate secret number between 1 and 10: */
+  for(int i=0;i<size;i++)
   {
-  	cin >> choice;
+    number = rand() % size + 1;
+    fr<<number<<" ";//prints to test_data.txt
+    numbers[i]=number; //saves random number in the array
+  }
+  }
+int main ()
+{
+  int size;
+int option=0,choice = 0; // n - array size, choice is for choosing Insertion Sort or ShellSort algortihms
+  int * numbers = new int[size]; // Dynamic array size changed in ReadArray() function
 
-  	if (choice == 1) {
-  		InsertionSort(n, numbers);
+  cout << "\n#1. Generate random data \n#2. Insert by hand \n";
+    while(option != 1 || option!= 2)
+  {
+  	cin >>option;
+
+  	if (option== 1) {
+      cout<<"### Insertion Sort & ShellSort ###\nEnter the size of an array: ";
+      cin>>size;
+  		insert_test_data(size,numbers);
+      cout<<"\nRandom data generated succesfully!!!\nYou can find it in test_data.txt\n";
+      
   		break;
   	}
-  	else if (choice == 2) {
-  		ShellSort(n, numbers);
+  	else if (option == 2) {
+      ReadArray(size, numbers);
+      cout<<"\nElments inserted succesfully!!!"<<endl;
   		break;
   	}
   	else
   		cout << "Wrong! Try again.\n";
   }
-  PrintArray(n, numbers);
 
+
+
+//---------------------------
+  cout << "\n#1. Insertion Sort\n#2. ShellSort\n";
+  while(choice != 1 || choice != 2)
+  {
+  	cin >> choice;
+
+  	if (choice == 1) {
+        auto start = high_resolution_clock::now(); 
+    // Call the function, here sort() 
+  		InsertionSort(size, numbers);
+    // Get ending timepoint 
+    auto stop = high_resolution_clock::now(); 
+    // Get duration. Substart timepoints to  
+    // get durarion. To cast it to proper unit 
+    // use duration cast method 
+    auto duration = duration_cast<microseconds>(stop - start); 
+    cout << "Time taken by function: "
+         << duration.count() << " microseconds" << endl; 
+  
+  		break;
+  	}
+  	else if (choice == 2) {
+              auto start = high_resolution_clock::now(); 
+    // Call the function, here sort() 
+  		ShellSort(size, numbers);
+    // Get ending timepoint 
+    auto stop = high_resolution_clock::now(); 
+    // Get duration. Substart timepoints to  
+    // get durarion. To cast it to proper unit 
+    // use duration cast method 
+    auto duration = duration_cast<microseconds>(stop - start); 
+    cout << "Time taken by function: "
+         << duration.count() << " microseconds" << endl; 
+  		
+  		break;
+  	}
+  	else
+  		cout << "Wrong! Try again.\n";
+  }
+  cout<<"Do you want to print sorted data?\n";
+  cout<<"\n#1 YES\n";
+  cout<<"\n#2 NO\n";
+  cin>>choice;
+if(choice != 1 || choice != 2)
+  {
+
+  	if (choice == 1) {
+  		  PrintArray(size, numbers);
+  	}
+  	else {
+  		cout<<"Out of options";
+    }
+  }
   delete [] numbers; // Deallocates the memory block
+
+
+
+  return 0;
 }
