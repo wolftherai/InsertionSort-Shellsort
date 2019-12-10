@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <chrono> 
 #include <iostream>
+#include <string>
 
 using namespace std;
 using namespace std::chrono;
@@ -106,12 +107,16 @@ void insert_test_data(int size, int*& numbers) {
 }
 void sort_analysis(int begin, int end, int test_times)
 {
+	string name = "";
+	name = to_string(begin)+"_"+to_string(end)+"t"+to_string(test_times)+"_table.csv";
+
+	ofstream fr(name);
 	double sh_max = 0, sh_min = 999999, sh_avg = 0;
 	double in_max = 0, in_min = 999999, in_avg = 0;
 	int size = begin;
 	double sh_time = 0, in_time = 0;
 
-
+	fr <<"test_times , "<< "shell, " << "array_size" << ", " << "avg_sh_steps" << ", " << "sh_avg"  ", " << "sh_max" << ", " << "sh_min" <<", " << "insertion, " << "array_size" << ", " << "avg_in_steps" << ", " << "in_avg" << ", " << "in_max" << ", " << "in_min"  "\n";
 	for (int j = size; j <= end; j += ((end - size) / 10))
 	{
 		double sh_max = 0, sh_min = 999999, sh_avg = 0;
@@ -161,10 +166,12 @@ void sort_analysis(int begin, int end, int test_times)
 		// cout<<"efectivness steps shell/steps insert : "<<double(sh_steps)/(sh_steps*1.);
 		// cout<<"efectivness steps insertion/steps insert : "<<double(in_steps)/(in_steps*1.);
 		cout << "---------------------------------------------------------------\n";
+		fr <<test_times<<", "<<"  , "<< j << ", " << avg_sh_steps<<", "<<sh_avg << ", " << sh_max << ", " << sh_min << ", " << "  , " << j << ", " << avg_in_steps << ", " << in_avg << ", " << in_max << ", " << in_min << "\n";
+		//fr << "insertion, " << j << ", " << in_avg << ", " << in_max << ", " << in_min << ", " << avg_in_steps << "\n";
 		delete[] in_elem, sh_elem;
 
 	}
-
+	fr.close();
 	// Deallocates the memory block
 }
 int main()
