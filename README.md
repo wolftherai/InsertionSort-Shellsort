@@ -1,5 +1,8 @@
 # Insertion-Sort-Shellsort (LT)
 
+#### code.cpp failas skirtas tiesioginiam programos veikimui!
+#### code_for_testing.cpp skirtas testavimui su vienodo dydžio, tačiau skirtingų elementų aibėmis!
+
 ## Programos naudojimas:
 Paleidus programą vartotojas turi galimybę įvesti visus pradinius duomenis ranka (Insert by hand). Šiuo atveju tektų įvesti aibės ilgį bei kiekvieną skaičių atskirai. Antrojo pasirinkimo atveju mes turime galimybę įvesti masyvo dydį ir programos pagalba skaičių aibė bus sugeneruota automašiškai (Generate random data).
 
