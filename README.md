@@ -1,18 +1,23 @@
 # Insertion-Sort-Shellsort (LT)
 
 ## Programos naudojimas:
-Paleidus programą vartotojas turi galimybę įvesti visus pradinius duomenis ranka (Insert by hand). Šiuo atveju tektų įvesti aibės ilgį bei kiekvieną skaičių atskirai. Antrojo pasirinkimo atveju mes turime galimybę įvesti masyvo dydį ir programos pagalba skaičių aibė bus sugeneruota automašiškai (Generate random data).<br/>
-Po aibės sukūrimo mums leidžiama pasirinkti vieną iš dviejų rūšiavimo algoritmų: paprastų įterpimų metodas (Insertion sort) arba Šelo algoritmas (ShellSort).</br>
+Paleidus programą vartotojas turi galimybę įvesti visus pradinius duomenis ranka (Insert by hand). Šiuo atveju tektų įvesti aibės ilgį bei kiekvieną skaičių atskirai. Antrojo pasirinkimo atveju mes turime galimybę įvesti masyvo dydį ir programos pagalba skaičių aibė bus sugeneruota automašiškai (Generate random data).
+
+Po aibės sukūrimo mums leidžiama pasirinkti vieną iš dviejų rūšiavimo algoritmų: paprastų įterpimų metodas (Insertion sort) arba Šelo algoritmas (ShellSort).
+
 Pasirinkus vieną iš minėtų funkcijų, gausime algoritmo vykdymo laiką micro sekundėmis ir sekundėmis. Paskutinis menių pasirinkimas būtų išrikiuotos (didėjimo tvarka) skaičių aibės atvaizdavimas konsolėje.
 
 ## Užduoties atlikimo algoritmas:
 ### Paprastų įterpimų metodas:
-Šiam algoritmui įgyventi sukurta funkcija InsertionSort(), kuriai paduoti du parametrai – masyvas ilgis „size“ ir pats masyvas „numbers“.</br>
-Po to imamas vienas elementas iš eilės (for ciklas) ir dedamas į jam tinkamą vietą (while ciklas). Elementai perkeliami į jiems tinkamas vietas perstūmimų pagalba t.y. swap funkcijos dėka.
+Šiam algoritmui įgyventi sukurta funkcija InsertionSort(), kuriai paduoti du parametrai – masyvas ilgis „size“ ir pats masyvas „numbers“.
+
+Po to imamas vienas elementas iš eilės (for ciklas) ir dedamas į jam tinkamą vietą (while ciklas). Elementai perkeliami į jiems tinkamas vietas perstūmimų pagalba t.y. swap funkcijos dėka.</br>
 Algoritmas vykdomas, kol pasiekiamas paskutinis aibės elementas.
 ### Šelo algoritmas:
-Algoritmas pradedamas vykdyti imant fiksuotą aibės ilgį. Imame pusę aibės – ilgį dalijame iš dviejų.</br>
-Šelo algoritmas leidžia paprastai apkeisti vienas nuo kito toli esančius elementus – nereikia perstumdinėti po vieną elementą. Po to tarpas tarp lyginamųjų elementų mažėja. Šiuo būdų visiškai ne savo vietose esantys elementai gali atsidurti savo pozicijose labai greitai.</br>
+Algoritmas pradedamas vykdyti imant fiksuotą aibės ilgį. Imame pusę aibės – ilgį dalijame iš dviejų.
+
+Šelo algoritmas leidžia paprastai apkeisti vienas nuo kito toli esančius elementus – nereikia perstumdinėti po vieną elementą. Po to tarpas tarp lyginamųjų elementų mažėja. Šiuo būdų visiškai ne savo vietose esantys elementai gali atsidurti savo pozicijose labai greitai.
+
 Algoritmas vykdomas, kol aibės tarpas (ilgis dalintas iš 2) cikle yra didesnis už nulį (nemažiau už vienetą).
 ## Laiko vykdymo sudėtingumas:
 
